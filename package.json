@@ -1,0 +1,16 @@
+{
+  "name": "energif-aula-blockly",
+  "private": true,
+  "version": "1.0.0",
+  "type": "module",
+  "scripts": {
+    "dev": "vite --host 0.0.0.0",
+    "build": "vite build"
+  },
+  "dependencies": {
+    "blockly": "^12.3.1"
+  },
+  "devDependencies": {
+    "vite": "^6.4.1"
+  }
+}
