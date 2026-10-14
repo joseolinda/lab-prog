@@ -55,3 +55,10 @@ footer a { color: var(--green); font-size: 13px; }
   .course-picker select { flex: 1; max-width: none; width: 100%; }
   .lesson-catalog { grid-template-columns: 1fr; }
 }
+
+/* Exemplos equivalentes em blocos, junto ao código Python. */
+.example-blocks { margin: 16px 0; min-width: 0; }
+.example-blocks .blockly-caption { gap: 12px; line-height: 1.6; flex-wrap: wrap; }
+.blockly-example { width: 100%; height: 220px; margin-top: 10px; border: 1px dashed #cbd6c3; border-radius: 6px; overflow: hidden; background: #eef2e7; }
+.blockly-example-tall { height: 310px; }
+.blocks-note { font-size: 13px; line-height: 1.6; color: #718069; margin: 9px 0 0; }

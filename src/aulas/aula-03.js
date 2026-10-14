@@ -1,6 +1,7 @@
 import * as Blockly from 'blockly';
 import 'blockly/blocks';
 import * as Pt from 'blockly/msg/pt-br';
+import { conditionalXml } from '../conditional-blocks.js';
 Blockly.setLocale(Pt);
 export default {
   id: 'aula-03',
@@ -21,7 +22,10 @@ const lessons = [
 ];
 let current = 0, value = 18, operator = '>=', left = 18, right = 18, step = 0, workspace;
 app.innerHTML = `<main><div class="eyebrow">AULA 03 · ESTRUTURAS CONDICIONAIS <span id="counter"></span></div><section class="intro"><div><h1>Aprenda a <em>decidir.</em></h1><p>Explore as estruturas condicionais em Python.</p></div><div class="lesson-stamp"><span>SE → ENTÃO</span><small>PENSE · TESTE · APRENDA</small></div></section><nav aria-label="Conteúdo da aula">${lessons.map((l,i)=>`<button data-page="${i}"><small>0${i+1}</small>${l[1]}</button>`).join('')}</nav><section id="lesson"></section><footer><span>LLPR <b>/</b> LÓGICA DE PROGRAMAÇÃO</span><div><button id="previous" class="quiet">← Anterior</button><span id="position"></span><button id="next">Próximo →</button></div><span class="keyboard">NAVEGUE COM ← →</span></footer></main>`;
-const code = (lines, active = -1) => `<pre aria-label="Código Python"><code>${lines.map((l,i)=>`<span class="code-line ${i===active?'highlight':''}"><i>${i+1}</i>${l.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;')}</span>`).join('')}</code></pre>`;
+const code = (lines, active = -1) => `<pre aria-label="Código Python"><code>${lines.map((l,i)=>`<span class="code-line ${i===active?'highlight':''}"><i>${i+1}</i>${l.replaceAll('&','&amp;').replaceAll('<','&lt;').replaceAll('>','&gt;')}</span>`).join('')}</code></pre>${blockPanel()}`;
+function blockPanel() {
+ return `<div class="example-blocks"><div class="blockly-caption">O MESMO EXEMPLO EM BLOCOS <span>Blockly · português</span></div><div id="example-blocks" class="blockly-example ${current===3||current===5?'blockly-example-tall':''}" role="img" aria-label="Representação em blocos do exemplo Python de ${lessons[current][1]}"></div>${current===5?`<p class="blocks-note">${step===1?'O código sem recuo é inválido. Os blocos mostram a estrutura correta: a mensagem pertence ao if.':'O encaixe dentro do se representa o recuo. A última mensagem fica fora da condição.'}</p>`:''}</div>`;
+}
 function diamond(text, active=true){return `<div class="diamond ${active?'active':''}"><span>${text}</span></div>`;}
 function result(text, active, type='yes'){return `<div class="flow-result ${type} ${active?'selected':''}">${text}</div>`;}
 function render(){
@@ -39,7 +43,7 @@ function render(){
  for(const id of ['left','right']) document.querySelector(`#${id}`)?.addEventListener('input',e=>{if(id==='left')left=+e.target.value;else right=+e.target.value;updateComparison();});
  document.querySelector('#step')?.addEventListener('click',()=>{step=(step+1)%3;render();});
  document.querySelectorAll('[data-indent]').forEach(b=>b.onclick=()=>{step=+b.dataset.indent;render();});
- if(current===0) mountBlocks();
+ if(current!==4) mountBlocks();
  if(current===4) updateComparison();
 }
 function content(){
@@ -52,13 +56,24 @@ function content(){
  return `<div class="experiment"><div class="visual-panel"><div class="panel-label"><span>FLUXOGRAMA VIVO</span><span class="live-dot">AO VIVO</span></div><div class="flow"><span class="flow-start">${multi?'Média':'Idade'} = ${value.toLocaleString('pt-BR')}</span><div class="stem"></div>${diamond(multi?'media ≥ 7?':'idade ≥ 18?')}<div class="fork"><span class="${yes?'lit':''}">↓ Sim · True</span><span class="${!yes?'lit':''}">↓ Não · False</span></div><div class="outcomes">${result(multi?'Aprovado':'Maior de idade',yes)}${multi?`<div class="nested">${diamond('media ≥ 5?',!yes)}<div class="mini-branches">${result('Em recuperação',mid)}${result('Reprovado',!yes&&!mid,'no')}</div></div>`:result(current===1?'Pular o bloco':'Menor de idade',!yes,'no')}</div><div class="flow-end">↓<br>Continuar o programa</div></div></div><div class="playground"><div class="panel-label">MUDE A ENTRADA <span>${multi?'0 a 10':'0 a 30'}</span></div><label class="range-label" for="value">${multi?'Média do aluno':'Idade da pessoa'} <output>${value.toLocaleString('pt-BR')}<small>${multi?' pontos':' anos'}</small></output></label><input id="value" type="range" min="0" max="${multi?10:30}" step="${multi?0.5:1}" value="${value}"><div class="code-title"><span>PYTHON</span><button id="step" class="quiet">${['▶ Acompanhar execução','→ Ver resultado','↺ Reiniciar destaque'][step]}</button></div>${code(lines,active)}<div class="console" role="status"><span>SAÍDA DO PROGRAMA</span><b>${multi?yes?'Aprovado':mid?'Em recuperação':'Reprovado':yes?'Maior de idade':current===2?'Menor de idade':'Nenhuma mensagem: o bloco foi ignorado.'}</b></div><p class="trace">${step===1?`Teste: ${value} >= ${multi?7:18} → ${yes?'True':'False'}`:step===2?'A linha destacada mostra a mensagem executada.':'Arraste o controle e veja o caminho mudar.'}</p></div></div>`;
 }
 function updateComparison(){const operations={'==':(a,b)=>a===b,'!=':(a,b)=>a!==b,'>':(a,b)=>a>b,'<':(a,b)=>a<b,'>=':(a,b)=>a>=b,'<=':(a,b)=>a<=b};const r=operations[operator](left,right);const el=document.querySelector('#comparison-result');if(el){el.className=r?'true':'false';el.innerHTML=`<b>${r?'True':'False'}</b><span>${r?'Verdadeiro':'Falso'}</span>`;}}
-function mountBlocks(){workspace=Blockly.inject('blocks',{readOnly:true,renderer:'zelos',scrollbars:false,sounds:false});const xml=Blockly.utils.xml.textToDom('<xml><block type="controls_if" x="12" y="10"><value name="IF0"><block type="logic_compare"><field name="OP">GTE</field><value name="A"><block type="math_number"><field name="NUM">18</field></block></value><value name="B"><block type="math_number"><field name="NUM">18</field></block></value></block></value><statement name="DO0"><block type="text_print"><value name="TEXT"><block type="text"><field name="TEXT">Maior de idade</field></block></value></block></statement></block></xml>');Blockly.Xml.domToWorkspace(xml,workspace);workspace.zoomToFit();}
+function mountBlocks(){
+ const container = app.querySelector(current===0?'#blocks':'#example-blocks');
+ if (!container) return;
+ workspace=Blockly.inject(container,{
+   readOnly:true, renderer:'zelos', scrollbars:true, sounds:false,
+   zoom:{controls:true,wheel:false,startScale:0.85,maxScale:1.5,minScale:0.45},
+   move:{scrollbars:true,drag:true,wheel:false},
+ });
+ Blockly.Xml.domToWorkspace(Blockly.utils.xml.textToDom(conditionalXml(current)),workspace);
+ workspace.zoomToFit();
+}
+
 function navigate(n){current=Math.max(0,Math.min(lessons.length-1,current+n));value=current===3?7:18;step=0;render();updateComparison();}
 document.querySelectorAll('[data-page]').forEach(b=>b.onclick=()=>navigate(+b.dataset.page-current));
 document.querySelector('#previous').onclick=()=>navigate(-1);document.querySelector('#next').onclick=()=>navigate(1);
 const onKeydown = e=>{if(['INPUT','SELECT','TEXTAREA','BUTTON'].includes(document.activeElement.tagName)||e.altKey||e.ctrlKey||e.metaKey)return;if(e.key==='ArrowRight')navigate(1);if(e.key==='ArrowLeft')navigate(-1);};
 document.addEventListener('keydown', onKeydown);
-const onResize = () => workspace && Blockly.svgResize(workspace);
+const onResize = () => { if(workspace){ Blockly.svgResize(workspace); workspace.zoomToFit(); } };
 window.addEventListener('resize', onResize);
 render();
 
