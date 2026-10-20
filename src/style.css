@@ -62,3 +62,193 @@ footer a { color: var(--green); font-size: 13px; }
 .blockly-example { width: 100%; height: 220px; margin-top: 10px; border: 1px dashed #cbd6c3; border-radius: 6px; overflow: hidden; background: #eef2e7; }
 .blockly-example-tall { height: 310px; }
 .blocks-note { font-size: 13px; line-height: 1.6; color: #718069; margin: 9px 0 0; }
+
+.interactive-result { margin-top: 16px; padding: 18px; gap: 12px; background: #e2eed6; border: 1px solid #9bb787; border-left: 4px solid var(--green); box-shadow: 0 3px 12px #234d3210; }
+.result-heading { display: flex; justify-content: space-between; align-items: center; flex-wrap: wrap; gap: 10px; }
+.interactive-result .result-heading > span { color: #4c6841; font-size: 11px; }
+.interactive-result .result-heading .result-live { padding: 5px 8px; border-radius: 20px; background: #cce1b8; color: #23563b; font-size: 10px; letter-spacing: 1px; }
+.interactive-result > b { font-size: 18px; color: #244e34; }
+.result-hint { font-size: 12px; line-height: 1.6; color: #537047; }
+
+/* Aula 04 · repetição while */
+.while-inputs { display: grid; grid-template-columns: repeat(4,minmax(0,1fr)); gap: 10px; margin-bottom: 22px; }
+.while-inputs label { display: grid; gap: 8px; font-size: 13px; color: #647459; }
+.while-inputs select { width: 100%; background: #f7f8ef; color: #305d47; border: 1px solid #bdcdb2; border-radius: 5px; padding: 9px 6px; font: 16px var(--mono); }
+.while-body { flex: 1; }
+.while-body .flow-result { opacity: .8; }
+.loop-return { font: 13px var(--mono); color: var(--green); margin: 20px 0 5px; }
+.while-flow .diamond { width: 155px; height: 94px; font-size: 13px; }
+.while-stats { display: flex; gap: 12px; justify-content: space-between; padding: 20px 0; }
+.while-stats span { font: 10px var(--mono); color: #718069; }
+.while-stats b { display: block; font-size: 28px; color: var(--green); margin-top: 6px; }
+.while-actions { display: flex; flex-wrap: wrap; gap: 8px; margin: 14px 0; }
+.while-actions > button:not(.quiet), .while-quiz button { border: 1px solid #a4ba94; border-radius: 5px; padding: 10px 12px; color: #305d47; background: #e1ebd6; font-size: 13px; }
+.while-actions > button:first-child { background: var(--green); color: white; }
+.while-output { overflow-wrap: anywhere; }
+.while-history { padding: 18px; border: 1px solid var(--line); border-radius: 7px; }
+.while-history > p { color: #718069; font-size: 13px; line-height: 1.6; }
+.while-history table { width: 100%; border-collapse: collapse; margin-top: 15px; font: 12px/1.7 var(--mono); text-align: left; }
+.while-history td, .while-history th { padding: 8px 4px; border-bottom: 1px solid var(--line); }
+.while-history th { font-weight: 500; color: #718069; }
+.while-quiz { margin-bottom: 22px; border: 1px solid #cbbf95; background: #f1ecd8; border-radius: 7px; padding: 20px; }
+.while-quiz > div { display: flex; gap: 10px; margin-top: 15px; }
+.while-quiz button.chosen { background: var(--green); color: white; }
+.while-quiz p { font-size: 14px; line-height: 1.7; color: #647459; }
+@media(max-width:650px) { .while-inputs { grid-template-columns:repeat(2,minmax(0,1fr)); } .while-history table { font-size:11px; } }
+
+/* Aula 04 · for: etapas curtas, simulação e prática no computador. */
+.for-lesson #for-content { padding-top: 26px; }
+.for-lesson #for-counter { color: #839087; }
+.for-lesson .overview > *,
+.for-lesson .experiment > *,
+.for-lesson .playground,
+.for-lesson .visual-panel { min-width: 0; }
+.for-lesson .section-heading { gap: 16px; }
+.for-lesson .pill { flex-shrink: 0; }
+.for-lesson .mode-card { gap: 12px; }
+.for-lesson .mode-symbol { width: 38px; flex-shrink: 0; font-size: 23px; }
+.for-lesson .mode-card small { line-height: 1.6; }
+.for-lesson .flow-result { line-height: 1.6; }
+.for-lesson .loop-return { font-size: 12px; line-height: 1.7; }
+.for-lesson code { font-family: var(--mono); }
+.for-lesson .for-computer code,
+.for-lesson .for-steps code,
+.for-lesson .for-check code { overflow-wrap: anywhere; }
+.for-sequence { display: flex; flex-wrap: wrap; justify-content: center; gap: 9px; }
+.for-sequence > span {
+  display: grid; gap: 7px; min-width: 65px; padding: 14px 10px;
+  border: 1px solid #bdcdb2; border-radius: 6px; background: #f6f8ef;
+  color: #305d47; font: 600 24px var(--mono);
+}
+.for-sequence small { color: #6b7c61; font: 10px var(--mono); }
+.for-sequence > span.visited { background: #dce8cc; border-color: #9bb787; }
+.for-sequence > span.current {
+  background: #f4e6bb; border-color: #b68a39;
+  color: #6e4f21; box-shadow: 0 3px 0 #d4b576;
+}
+.for-sequence > span.current small { color: #785e2b; }
+.for-flow { padding-top: 5px; }
+.for-flow .flow-start { max-width: 100%; overflow-wrap: anywhere; }
+.for-computer {
+  margin-top: 26px; padding: 22px 24px;
+  background: #eaf0e4; border: 1px solid #cbd8c2;
+  border-left: 4px solid var(--green); border-radius: 7px;
+}
+.for-task-title { display: flex; align-items: center; justify-content: space-between; gap: 12px; flex-wrap: wrap; }
+.for-task-title > code { color: #305d47; font-size: 13px; }
+.for-computer ol,
+.for-steps { padding-left: 23px; margin: 16px 0; color: #51664f; font-size: 15px; line-height: 1.8; }
+.for-computer li,
+.for-steps li { padding-left: 4px; margin-bottom: 10px; }
+.for-computer li::marker,
+.for-steps li::marker { color: var(--green); font-weight: 700; }
+.for-computer > p { margin: 16px 0 0; color: #65765c; font-size: 13px; line-height: 1.75; }
+.for-setup {
+  margin-bottom: 26px; padding: 22px 24px;
+  background: #f0f1e7; border: 1px solid #d6ddcf; border-radius: 7px;
+}
+.for-commands { display: grid; grid-template-columns: repeat(2, minmax(0, 1fr)); gap: 12px; margin-top: 18px; }
+.for-commands > div {
+  display: grid; gap: 9px; padding: 15px 17px; min-width: 0;
+  background: #203c35; border-radius: 6px; color: #e8eddf;
+}
+.for-commands span { color: #b5c7b4; font: 10px var(--mono); letter-spacing: 1px; }
+.for-commands code { font-size: 14px; overflow-wrap: anywhere; }
+.for-setup > .trace { margin-bottom: 0; }
+.for-actions { display: flex; flex-wrap: wrap; gap: 9px; margin: 15px 0; }
+.for-actions > button {
+  padding: 11px 13px; border: 1px solid #a4ba94; border-radius: 5px;
+  background: #e1ebd6; color: #305d47; font-size: 13px; line-height: 1.4;
+}
+.for-actions > button:first-child { background: var(--green); color: #fff; border-color: var(--green); }
+.for-actions > .quiet { border-color: transparent; background: transparent; color: #51645d; }
+.for-actions > button:not(:disabled):hover { filter: brightness(.95); }
+.for-line-guide { padding-left: 23px; margin: 22px 0 0; color: #596d53; }
+.for-line-guide li { padding: 0 0 15px 4px; font-size: 14px; line-height: 1.75; }
+.for-line-guide li::marker { color: var(--green); font-weight: 700; }
+.for-line-guide li > code { display: block; white-space: pre-wrap; overflow-wrap: anywhere; color: #2e5a42; font-size: 13px; }
+.for-line-guide li > span { display: block; margin-top: 4px; }
+.for-variants { flex-wrap: wrap; }
+.for-variants button { font-family: var(--mono); line-height: 1.5; }
+.for-example-note {
+  margin: -3px 0 24px; padding: 13px 16px;
+  border-left: 3px solid #b9caa9; background: #ecefe3;
+  font-size: 14px; line-height: 1.75; color: #566c4d;
+}
+.for-anatomy { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: 10px; margin: 0 0 22px; }
+.for-anatomy > span { display: grid; align-content: start; gap: 9px; min-width: 0; padding: 13px 9px; border-bottom: 1px solid #cbd6c3; }
+.for-anatomy small { font: 10px/1.6 var(--mono); color: #718069; }
+.for-anatomy b { color: var(--green); font: 600 28px var(--mono); }
+.for-output {
+  display: block; white-space: pre-wrap; overflow-wrap: anywhere;
+  color: #244e34; font: 17px/1.7 var(--mono);
+}
+.for-sum { padding-bottom: 6px; }
+.for-total { display: grid; gap: 10px; justify-items: center; padding: 15px 20px 25px; }
+.for-total small { font: 14px var(--mono); color: #61765a; }
+.for-total strong { color: var(--green); font-size: 68px; line-height: 1; font-weight: 700; }
+.for-total > span { font: 13px/1.6 var(--mono); color: #607654; }
+.for-table { width: calc(100% - 36px); margin: 0 18px; border-collapse: collapse; text-align: left; font: 13px/1.7 var(--mono); color: #3b5a3e; }
+.for-table caption { text-align: left; padding-bottom: 12px; font: 13px/1.6 Inter, 'Segoe UI', sans-serif; color: #61765a; }
+.for-table th,
+.for-table td { padding: 10px 7px; border-bottom: 1px solid #cbd7c0; }
+.for-table thead th { font-size: 11px; font-weight: 500; color: #61765a; }
+.for-table tbody th { font-weight: 600; }
+.for-table .pending { color: #7d8b74; }
+.for-table tr.active { background: #d7e8bb; color: #284d30; }
+.for-table tr.active > th { box-shadow: inset 3px 0 var(--green); }
+.for-sum > .for-actions { margin: 20px 18px 16px; }
+.for-exercise-intro { padding: 20px 22px; background: #eaf0e4; border: 1px solid #d3decc; border-radius: 7px; }
+.for-exercise-intro p { margin: 10px 0 0; color: #5b7052; font-size: 15px; line-height: 1.8; }
+.for-exercises { display: grid; grid-template-columns: 1fr; gap: 20px; list-style: none; padding: 0; margin: 22px 0 0; }
+.for-exercises > li { min-width: 0; }
+.for-exercises article { padding: 25px; background: #f8f8f0; border: 1px solid #d3dbcb; border-radius: 8px; }
+.for-exercise-heading { display: flex; align-items: flex-start; gap: 16px; }
+.for-question-number {
+  display: grid; place-items: center; flex-shrink: 0; width: 43px; height: 43px;
+  background: #e0ead5; border: 1px solid #c2d2b5; border-radius: 6px;
+  color: var(--green); font: 20px var(--mono);
+}
+.for-exercise-heading h3 { margin: 0 0 7px; color: #30543d; font-size: 21px; letter-spacing: -.4px; line-height: 1.3; }
+.for-exercise-heading code { font-size: 12px; color: #718069; }
+.for-exercises article > p,
+.for-exercises details p { color: #596e52; font-size: 16px; line-height: 1.8; }
+.for-exercises article > p { margin: 18px 0; }
+.for-check { padding: 15px 18px; background: #eaf0e1; border-left: 3px solid #94ad7c; border-radius: 3px; }
+.for-check > b { color: #3c6240; font-size: 13px; }
+.for-check p { margin: 6px 0 0; font-size: 14px; line-height: 1.8; color: #5a7051; }
+.for-exercises details { margin-top: 18px; border-top: 1px solid #d9e0d1; }
+.for-exercises summary { padding: 15px 0 0; cursor: pointer; color: var(--green); font-size: 14px; font-weight: 600; line-height: 1.7; }
+.for-exercises summary:focus-visible { outline: 3px solid #c77d37; outline-offset: 4px; }
+.for-exercises details[open] summary { margin-bottom: 9px; }
+.for-exercises details p { margin: 0; font-size: 14px; }
+@media (min-width: 1500px) {
+  .for-lesson #for-content { padding-top: 32px; }
+}
+@media (max-width: 650px) {
+  .for-lesson nav button { min-width: 0; gap: 5px; font-size: 12px; line-height: 1.5; }
+  .for-lesson .section-heading { align-items: flex-start; }
+  .for-lesson .pill { padding: 7px 9px; font-size: 9px; }
+  .for-lesson .panel-label { gap: 12px; line-height: 1.6; flex-wrap: wrap; }
+  .for-computer,
+  .for-setup,
+  .for-exercise-intro,
+  .for-exercises article { padding: 19px 17px; }
+  .for-computer ol,
+  .for-steps { font-size: 14px; }
+  .for-commands { grid-template-columns: 1fr; }
+  .for-sequence { gap: 7px; }
+  .for-sequence > span { min-width: 57px; padding: 12px 7px; font-size: 22px; }
+  .for-anatomy { gap: 5px; }
+  .for-anatomy > span { padding: 10px 5px; }
+  .for-anatomy small { font-size: 9px; }
+  .for-exercise-heading { gap: 12px; }
+  .for-exercise-heading h3 { font-size: 19px; }
+  .for-exercises article > p { font-size: 15px; }
+  .for-table { font-size: 12px; }
+  .for-table th,
+  .for-table td { padding: 9px 5px; }
+}
+@media (prefers-reduced-motion: no-preference) {
+  .for-lesson #for-content { animation: appear .25s ease; }
+}

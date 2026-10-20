@@ -17,6 +17,15 @@ export const escapeHtml = value => String(value).replace(/[&<>"']/g, c => ({
   '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;',
 }[c]));
 const app = document.querySelector('#app');
+for (const type of ['copy', 'cut', 'paste']) {
+  document.addEventListener(type, event => event.preventDefault(), true);
+}
+document.addEventListener('keydown', event => {
+  const key = event.key.toLowerCase();
+  const clipboardShortcut = (event.ctrlKey || event.metaKey) && ['c', 'v', 'x'].includes(key);
+  const insertShortcut = event.key === 'Insert' && (event.shiftKey || event.ctrlKey);
+  if (clipboardShortcut || insertShortcut) event.preventDefault();
+}, true);
 app.innerHTML = `<header><a class="brand" href="#/">LAB<span>/</span>PROG <small>ENERGIF</small></a><div class="course-picker"><label for="aula-select">AULAS</label><select id="aula-select"><option value="">Todas as aulas</option>${aulas.map(a => `<option value="${escapeHtml(a.id)}">Aula ${String(a.number).padStart(2, '0')} · ${escapeHtml(a.title)}</option>`).join('')}</select></div><button id="fullscreen" class="quiet">⛶ <span>Tela cheia</span></button></header><div id="course-content"></div>`;
 const root = document.querySelector('#course-content');
 const select = document.querySelector('#aula-select');

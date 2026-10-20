@@ -4,6 +4,8 @@ Execute `npm install` e `npm run dev`. Gere a versão de produção com `npm run
 
 A página inicial lista as aulas cadastradas. A aula de estruturas condicionais é a **Aula 03**, acessível também por `/#/aula-03`. O seletor no cabeçalho permite voltar ao catálogo ou trocar de aula. Os endereços podem ser compartilhados e recarregados sem configurar rotas no servidor.
 
+Copiar, recortar e colar ficam desabilitados em todo o site, inclusive pelos atalhos de teclado.
+
 ## Adicionar uma aula
 
 Crie um arquivo JavaScript em `src/aulas/`, por exemplo `aula-04.js`. O catálogo descobre automaticamente todos os arquivos dessa pasta e os ordena pelo campo `number`. Não é necessário alterar `main.js`.
